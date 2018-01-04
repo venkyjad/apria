@@ -28,7 +28,8 @@ exports.saveFile = function(req, res) {
         if(err) {
             return res.send("Error uploading file.");
         }
-
+        if (req.file == undefined)
+        	return res.status(401).json({message:"Select a file to upload"})
         var filename = req.file.originalname;
         var model = null;
         
