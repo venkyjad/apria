@@ -1,0 +1,49 @@
+<div class="row" style="margin-top:100px;">
+	<div class="col-sm-10 offset-sm-1">
+		<div class="card">
+			<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Emp ID</th>
+						<th>Employee Name</th>
+						<th>Dept</th>
+						<th>City</th>
+						<th>Salary</th>
+						<th style="width:125px;">Actions</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="item in employee"  ng-include="getTemplate(item)">
+					
+				</tr>
+			</table>
+	
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- Template which is used to display -->
+  <script type="text/ng-template" id="display">
+        <td>{{item.emp_id}}</td>
+		<td>{{item.name}}</td>
+		<td>{{item.dept}}</td>
+		<td>{{item.city}}</td>
+		<td>{{item.salary}}</td>
+        <td>
+            <button class="btn btn-sm btn-warning" ng-click="editEmp(item)">Edit</button>
+        </td>
+   </script>
+   	
+   	<!-- Template used to show when editing -->
+    <script type="text/ng-template" id="edit">
+    	<td><input type="text" ng-model="employee.selected.emp_id" class="form-control"/></td>
+        <td><input type="text" ng-model="employee.selected.name" class="form-control"/></td>
+        <td><input type="text" ng-model="employee.selected.dept" class="form-control"/></td>
+        <td><input type="text" ng-model="employee.selected.city" class="form-control"/></td>
+        <td><input type="text" ng-model="employee.selected.salary" class="form-control"/></td>
+        <td>
+        	<button class="btn btn-sm btn-success" ng-click="saveEmp($index)">Save</button>
+        	<button class="btn btn-sm btn-danger" ng-click="reset()">Cancel</button>
+        </td>
+        
+    </script>
