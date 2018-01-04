@@ -20,7 +20,7 @@ exports.saveFile = function(req, res) {
 		  }
 		});
 
-	// uploading the file with paramter 'file'
+	// uploading the file with fieldname 'file'
 	var upload = multer({ storage : storage}).single('file');
 
 
@@ -32,7 +32,7 @@ exports.saveFile = function(req, res) {
         var filename = req.file.originalname;
         var model = null;
         
-        // Converts excel data to mongo
+        // Converts excel data to json
 	  	mongoXlsx.xlsx2MongoData("./uploads/"+filename, model, function(err, mongoData) {
 		  	emp.insertMany(mongoData, function(err, emp) {
 		    if (err) {
